@@ -3,6 +3,14 @@ This is a basic kernel. It can display text to the screen via VGA.
 ![Image of kernel](images/screenshot.png)
 
 # Installation
+
+## Pre-setup
+
+**Make sure** that you have a cross-compiler for `i686-elf` and that there is the necessary `i686-elf-gcc` and `i686-elf-as` in `$PATH`.
+
+An amazing guide to do this can be found at:
+https://wiki.osdev.org/GCC_Cross-Compiler
+
 ## Setup
 
 Ensure you are in a linux/WSL envionment.
@@ -28,7 +36,8 @@ Run the following:
 ```sh
 git clone https://github.com/Advaith-Hello/KernelProject.git/
 cd KernelProject/
-make```
+make
+```
 
 There should now be a `bin` folder, inside of which you'll find a `kernel.bin` and `myos.iso`.
 
