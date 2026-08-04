@@ -2,7 +2,9 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include "idt/idt.h"
 
 
-void idt_exception_handler(uint32_t vector) {}
+
+void idt_exception_handler(registers_t* regs) {}
 

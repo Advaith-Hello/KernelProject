@@ -4,15 +4,25 @@ global isr_stub_table
 
 %macro isr_err_stub 1
 isr_stub_%+%1:
-    call idt_exception_handler
+    call common_isr_stub
     iret 
 %endmacro
 
 %macro isr_no_err_stub 1
 isr_stub_%+%1:
-    call idt_exception_handler
+    call common_isr_stub
     iret
 %endmacro
+
+
+common_isr_stub:
+    pusha               ; General purpose registers
+    push esp            ; Pointer for C argument
+    call idt_exception_handler
+    add esp, 4          ; Clean up pushed argument
+    popa                ; Restore general registers
+    add esp, 8          ; Clean up vector number and error code
+    iret                ; Return from interrupt
 
 
 section .data
