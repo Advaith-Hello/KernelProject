@@ -21,15 +21,15 @@ Also ensure you have the dependencies installed
 
 Debian/Ubuntu:
 
-`sudo apt update && sudo apt install git build-essential mtools xorriso grub-pc-bin grub-efi-amd64-bin qemu-system-x86`
+`sudo apt update && sudo apt install git build-essential mtools xorriso grub-pc-bin grub-efi-amd64-bin nasm qemu-system-x86`
 
 Fedora:
 
-`sudo dnf install git @development-tools mtools xorriso grub2 grub2-efi-x64 qemu-system-x86`
+`sudo dnf install git @development-tools mtools xorriso grub2 grub2-efi-x64 nasm qemu-system-x86`
 
 Arch:
 
-`sudo pacman -S git base-devel mtools xorriso grub qemu-desktop`
+`sudo pacman -S git base-devel mtools xorriso grub nasm qemu-desktop`
 
 ## Install
 

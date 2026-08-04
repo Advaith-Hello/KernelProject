@@ -1,20 +1,24 @@
 CROSS = i686-elf-
 CC = $(CROSS)gcc
 AS = $(CROSS)as
+NASM = nasm
 
 CFLAGS = -std=gnu11 -ffreestanding -O2 -Wall -Wextra -I./src/
 LDFLAGS = -T linker.ld -ffreestanding -nostdlib -lgcc
 
 KERNEL = bin/kernel.bin
 
-SRC := $(shell find src -name "*.c")
-OBJ := $(patsubst src/%.c,build/%.o,$(SRC))
+SRC_C := $(shell find src -name "*.c")
+OBJ_C := $(patsubst src/%.c,build/%.o,$(SRC_C))
+
+SRC_ASM := $(shell find src -name "*.asm")
+OBJ_ASM := $(patsubst src/%.asm,build/%.o,$(SRC_ASM))
 
 .PHONY: all clean multiboot
 
 all: kernel multiboot iso
 
-$(KERNEL): $(OBJ) build/boot.o
+$(KERNEL): $(OBJ_C) $(OBJ_ASM) build/boot.o
 	mkdir -p $(dir $@)
 	$(CC) $(LDFLAGS) -o $@ $^
 
@@ -22,9 +26,13 @@ build/%.o: src/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-build/boot.o: src/boot.s
+build/%.o: src/%.s
 	mkdir -p $(dir $@)
 	$(AS) $< -o $@
+
+build/%.o: src/%.asm
+	mkdir -p $(dir $@)
+	$(NASM) -f elf32 $< -o $@
 
 clean:
 	rm -rf build bin
