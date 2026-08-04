@@ -15,7 +15,7 @@ extern void* isr_stub_table[];
 
 void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags)
 {
-    idt_entry_t* descriptor = &idt[vector];
+    idt_entry_t* descriptor = &idt[vector]; 
 
     descriptor->isr_low     = (uint32_t)isr & 0xFFFF;
     descriptor->kernel_cs   = 0x08;

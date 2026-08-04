@@ -17,8 +17,8 @@ typedef struct {
 } __attribute__((packed)) idt_entry_t;
 
 typedef struct {
-	uint16_t	limit;
-	uint32_t	base;
+	uint16_t limit;
+	uint32_t base;
 } __attribute__((packed)) idtr_t;
 
 typedef struct {
