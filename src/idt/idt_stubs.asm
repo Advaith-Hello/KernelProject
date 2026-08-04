@@ -28,10 +28,10 @@ common_isr_stub:
 section .data
 isr_stub_table:
   %assign i 0 
-  %rep    32 
+  %rep    256
     dd isr_stub_%+i
   %assign i i+1 
-%endrep
+  %endrep
 
 
 isr_no_err_stub 0
@@ -66,4 +66,10 @@ isr_no_err_stub 28
 isr_no_err_stub 29
 isr_err_stub    30
 isr_no_err_stub 31
+
+%assign i 32 
+%rep    224
+isr_no_err_stub %[i]
+%assign i i+1 
+%endrep
 
