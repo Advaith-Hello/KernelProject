@@ -1,6 +1,5 @@
 #include "vga/vga_constants.h"
 #include "core/utils.h"
-
 #include "vga/print.h"
 
 
@@ -59,5 +58,22 @@ void print(const char* str) {
 	for (size_t i = 0; i < size; i++) {
 		terminal_put(str[i]);
 	}
+}
+
+
+// Prints an int as a hex string
+
+void print_hex(const unsigned int hex) {
+  char buffer[9];
+  hex_to_str(hex, buffer);
+  print(buffer);
+}
+
+// Prints a uint8_t as a hex string
+
+void print_uint8(const uint8_t hex) {
+  char buffer[3];
+  uint8_hex_to_str(hex, buffer);
+  print(buffer);
 }
 

@@ -9,6 +9,10 @@
 
 size_t strlen(const char* str);
 
+int hex_to_str(const unsigned int num, char *str);
+int uint8_hex_to_str(const uint8_t num, char *str); 
+
+
 static inline uint8_t vga_entry_color(enum vga_color fg, enum vga_color bg) {
 	return fg | bg << 4;
 }
