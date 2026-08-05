@@ -3,26 +3,24 @@
 #include <stdint.h>
 
 #include "idt/idt.h"
-
-
-#define PS2_DATA_PORT   0x60
-#define PS2_STATUS_PORT 0x64
-#define PIC1_COMMAND    0x20
-#define PIC_EOI         0x20
+#include "vga/print.h"
 
 
 
-void idt_exception_handler(registers_t* regs) {
-  switch (vector)
+__attribute__((cdecl)) void idt_exception_handler(registers_t* regs)
+{
+  if (regs->vector == 0x21) { 
+    uint8_t scancode = inb(0x60);
+    char chr = (char)scancode;
+    terminal_put(scancode);
+  }
+
+  if (regs->vector >= 32 && regs->vector <= 47)
   {
-    case 0x20:
-
-      if (inb(PS2_STATUS_PORT) & 0x01) {return;}
-      
-      uint8_t scancode = inb(PS2_DATA_PORT);
-      
-      outb(PIC1_COMMAND, PIC_EOI);
-      break;
+    if (regs->vector >= 40) {
+      outb(0xA0, 0x20);
+    }
+    outb(0x20, 0x20);
   }
 }
 
