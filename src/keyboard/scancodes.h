@@ -1,8 +1,9 @@
 #pragma once
 
 
-constexpr uint8_t scan_to_key_table[] =
+const uint8_t scan_to_key_table[] =
 {
+  0xff,
   0x40,
   0x1,
   0x2,
@@ -17,7 +18,7 @@ constexpr uint8_t scan_to_key_table[] =
   0xb,
   0xc,
   0x3c,
-  0x31,
+  0x30,
   0x10,
   0x11,
   0x12,
