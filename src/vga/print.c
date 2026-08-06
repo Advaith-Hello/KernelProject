@@ -33,20 +33,27 @@ void terminal_put(char chr)
 {
 	const size_t idx = terminal_row * VGA_WIDTH + terminal_column;
 
-  if (chr >= 32 && chr <= 126) {
+  if (chr >= 32 && chr <= 126 && chr != '\n' && chr != '\r') {
 	  terminal_buffer[idx] = vga_entry(chr, terminal_color);
 	}
 
-	if (++terminal_column == VGA_WIDTH) {
+	if (chr == '\n') {
+		terminal_row++;
 		terminal_column = 0;
-		if (++terminal_row == VGA_HEIGHT) {
-		  for (int i = 0; i < (80 * 25); i++) {
-		    if (i - VGA_WIDTH >= 0) {
-		      terminal_buffer[i - VGA_WIDTH] = terminal_buffer[i];
-		    }
-		  }
-			terminal_row -= 1;
-		}
+	} else if (chr == '\r') {
+		terminal_column = 0;
+	} else {
+		terminal_column++;
+	}
+
+	if (terminal_column >= VGA_WIDTH) {
+		terminal_column = 0;
+		terminal_row++;
+	}
+
+	if (terminal_row >= VGA_HEIGHT) {
+		terminal_row = 0;
+		terminal_column = 0;
 	}
 }
 
