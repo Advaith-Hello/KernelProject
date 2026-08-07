@@ -4,6 +4,7 @@
 
 #include "idt/idt.h"
 #include "vga/print.h"
+#include "keyboard/stdin.h"
 
 
 
@@ -62,6 +63,7 @@ void setup_idt_table(void)
     vectors[(uint8_t)vector] = true;
   }
 
+	init_keyboard_streams();
   PIC_remap(0x20, 0x28);
 
   __asm__ __volatile__("lidt %0" : : "m"(idtr)); // load the new IDT

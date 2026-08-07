@@ -1,5 +1,5 @@
 # What is this?
-This is a basic kernel. It can display text to the screen via VGA.
+This is a basic kernel written for i686-elf that can display text to the screen via VGA and take in input using a PS/2 keyboard.
 ![Image of kernel](images/screenshot.png)
 
 # Installation
