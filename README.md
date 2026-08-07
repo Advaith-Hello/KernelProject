@@ -1,6 +1,7 @@
 # What is this?
 This is a basic kernel written for i686-elf that can display text to the screen via VGA and take in input using a PS/2 keyboard.
-![Image of kernel](images/screenshot.png)
+
+![Image of kernel shell](images/screenshot.png)
 
 # Installation
 
