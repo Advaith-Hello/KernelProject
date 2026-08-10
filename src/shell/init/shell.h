@@ -6,4 +6,5 @@
 
 
 void begin_shell();
+int parse(const char *input);
 

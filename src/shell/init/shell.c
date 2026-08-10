@@ -1,4 +1,5 @@
-#include "shell/shell.h"
+#include "shell/init/shell.h"
+#include "shell/commands/commands.h"
 #include "vga/print.h"
 #include "keyboard/stdin.h"
 
@@ -13,7 +14,7 @@ void begin_shell()
     print("$ ");
     char input[256] = {0};
     input_stdin(input, sizeof(input));
-    print(input);
+    sh_cmd(input);
   }
 }
 
