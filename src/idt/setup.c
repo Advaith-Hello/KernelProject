@@ -68,5 +68,8 @@ void setup_idt_table(void)
 
   __asm__ __volatile__("lidt %0" : : "m"(idtr)); // load the new IDT
   __asm__ __volatile__("sti"); // set the interrupt flag
+  
+	outb(PIC1_DATA, 0xFD);
+	outb(PIC2_DATA, 0xFF);
 }
 

@@ -1,12 +1,11 @@
 #include <stdbool.h>
-#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
 #include "idt/idt.h"
 #include "vga/print.h"
 #include "keyboard/stdin.h"
-#include "shell/shell.h"
+#include "shell/init/shell.h"
 
 
 // General cross compiler check

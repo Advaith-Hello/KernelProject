@@ -8,6 +8,7 @@
 
 
 size_t strlen(const char* str);
+int strcmp(const char* s1, const char* s2);
 
 int hex_to_str(const unsigned int num, char *str);
 int uint8_hex_to_str(const uint8_t num, char *str); 

@@ -13,6 +13,15 @@ size_t strlen(const char* str) {
 }
 
 
+int strcmp(const char* s1, const char* s2) {
+	while(*s1 && (*s1 == *s2)) {
+  	s1++;
+  	s2++;
+  }
+  return *(const unsigned char*)s1 - *(const unsigned char*)s2;
+}
+
+
 // CRITICAL: str MUST be of length 9 minimum
 
 int hex_to_str(const unsigned int num, char *str)
