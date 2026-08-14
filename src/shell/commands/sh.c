@@ -12,7 +12,7 @@ int sh_cmd(const char *input)
   int j = 0;
 
   for (int i = 0; input[i] != '\0'; i++) {
-    if (input[i] == ' ' || input[i] == '\n') {
+    if (!argnum && (input[i] == ' ' || input[i] == '\n')) {
       argnum = 1;
       j = 0;
       continue;
@@ -22,7 +22,9 @@ int sh_cmd(const char *input)
     j++;
   }
 
-  if (strcmp(command, "echo") == 0) {
+  if (strcmp(command, "sh") == 0) {
+    return sh_cmd(argument);
+  } else if (strcmp(command, "echo") == 0) {
     return echo_cmd(argument);
   } else {
     print("Unknown or undefined command: ");
