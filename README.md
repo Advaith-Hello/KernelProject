@@ -14,6 +14,10 @@ Do not use your system `gcc` for building the kernel. You must build a cross-com
 An amazing guide to do this can be found at:
 https://wiki.osdev.org/GCC_Cross-Compiler
 
+Note the versions I used:
+  GNU GCC 16.2.0
+  GNU Binutils 2.47
+
 ## Setup
 
 Ensure you are in a linux/WSL environment.

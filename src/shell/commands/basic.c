@@ -4,7 +4,6 @@
 
 int echo_cmd(const char *argument) {
   print(argument);
-  print("\n");
   return 0;
 }
 
