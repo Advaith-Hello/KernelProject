@@ -6,6 +6,7 @@
 #include "vga/print.h"
 #include "keyboard/stdin.h"
 #include "shell/init/shell.h"
+#include "paging/paging.h"
 
 
 // General cross compiler check
@@ -20,6 +21,7 @@
 void kernel_main(void)
 {
 	setup_idt_table();
+	setup_paging();
 	begin_shell();
 
   while (1) {

@@ -9,28 +9,31 @@ LDFLAGS = -T linker.ld -ffreestanding -nostdlib -lgcc
 KERNEL = bin/kernel.bin
 
 SRC_C := $(shell find src -name "*.c")
-OBJ_C := $(patsubst src/%.c,build/%.o,$(SRC_C))
+OBJ_C := $(patsubst src/%.c,build/%.c.o,$(SRC_C))
+
+SRC_S := $(shell find src -name "*.s")
+OBJ_S := $(patsubst src/%.s,build/%.s.o,$(SRC_S))
 
 SRC_ASM := $(shell find src -name "*.asm")
-OBJ_ASM := $(patsubst src/%.asm,build/%.o,$(SRC_ASM))
+OBJ_ASM := $(patsubst src/%.asm,build/%.asm.o,$(SRC_ASM))
 
 .PHONY: all clean multiboot
 
 all: kernel multiboot iso
 
-$(KERNEL): $(OBJ_C) $(OBJ_ASM) build/boot.o
+$(KERNEL): $(OBJ_C) $(OBJ_S) $(OBJ_ASM)
 	mkdir -p $(dir $@)
 	$(CC) $(LDFLAGS) -o $@ $^
 
-build/%.o: src/%.c
+build/%.c.o: src/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-build/%.o: src/%.s
+build/%.s.o: src/%.s
 	mkdir -p $(dir $@)
 	$(AS) $< -o $@
 
-build/%.o: src/%.asm
+build/%.asm.o: src/%.asm
 	mkdir -p $(dir $@)
 	$(NASM) -f elf32 $< -o $@
 

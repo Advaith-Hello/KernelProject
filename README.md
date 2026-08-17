@@ -3,6 +3,12 @@ This is a basic kernel written for i686-elf that can display text to the screen 
 
 ![Image of kernel shell](images/screenshot.png)
 
+# Credit
+
+Huge credit to the OSDEV wiki, many parts of my code were either inspired or taken directly from it You can find them at:
+
+https://wiki.osdev.org/Expanded_Main_Page
+
 # Installation
 
 ## Pre-setup
