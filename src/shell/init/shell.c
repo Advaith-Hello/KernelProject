@@ -11,7 +11,7 @@ void begin_shell()
 
   while (1)
   {
-    print("$ ");
+    vga_puts("$ ");
     char input[256] = {0};
     input_stdin(input, sizeof(input));
     sh_cmd(input);

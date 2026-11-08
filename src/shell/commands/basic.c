@@ -3,7 +3,7 @@
 
 
 int echo_cmd(const char *argument) {
-  print(argument);
+  vga_puts(argument);
   return 0;
 }
 

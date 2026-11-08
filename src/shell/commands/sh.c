@@ -27,9 +27,9 @@ int sh_cmd(const char *input)
   } else if (strcmp(command, "echo") == 0) {
     return echo_cmd(argument);
   } else {
-    print("Unknown or undefined command: ");
-    print(command);
-    print("\n");
+    vga_puts("Unknown command: ");
+    vga_puts(command);
+    vga_puts("\n");
     return 2;
   }
 

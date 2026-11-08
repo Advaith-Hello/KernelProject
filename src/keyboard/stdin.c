@@ -46,7 +46,7 @@ int input_stdin(char* buffer, size_t buffer_len)
   }
 
   buffer[buffer_idx] = '\n';
-  print("\n");
+  vga_puts("\n");
   if (buffer_idx == (int)buffer_len - 1) return 1;
   else return 0;
 }

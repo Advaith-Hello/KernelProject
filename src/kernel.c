@@ -4,9 +4,6 @@
 
 #include "idt/idt.h"
 #include "gdt/gdt.h"
-#include "vga/print.h"
-#include "serial/serial.h"
-#include "keyboard/stdin.h"
 #include "shell/init/shell.h"
 #include "paging/paging.h"
 

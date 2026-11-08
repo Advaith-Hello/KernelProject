@@ -60,7 +60,7 @@ void terminal_put(char chr)
 
 // Write null-term string on screen
 
-void print(const char* str) {
+void vga_puts(const char* str) {
   size_t size = strlen(str);
 	for (size_t i = 0; i < size; i++) {
 		terminal_put(str[i]);
@@ -70,17 +70,17 @@ void print(const char* str) {
 
 // Prints an int as a hex string
 
-void print_hex(const unsigned int hex) {
+void vga_puts_hex(const unsigned int hex) {
   char buffer[9];
   hex_to_str(hex, buffer);
-  print(buffer);
+  vga_puts(buffer);
 }
 
 // Prints a uint8_t as a hex string
 
-void print_uint8(const uint8_t hex) {
+void vga_puts_uint8(const uint8_t hex) {
   char buffer[3];
   uint8_hex_to_str(hex, buffer);
-  print(buffer);
+  vga_puts(buffer);
 }
 
