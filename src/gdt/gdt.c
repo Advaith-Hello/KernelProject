@@ -49,6 +49,5 @@ void setup_gdt()
 
     // Flush in asm
     gdt_flush();
-    serial_puts("\nFinished gdt flush\n");
 }
 
