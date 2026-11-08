@@ -24,9 +24,13 @@ void kernel_main(void)
 {
 	serial_puts("Hello, World!");
 	setup_gdt();
+	serial_puts("gdt ok\n");
 	setup_idt();
+	serial_puts("idt ok\n");
 	setup_paging();
+	serial_puts("paging ok\n");
 	begin_shell();
+	serial_puts("shell returned (bad)\n");
 
   while (1) {
     __asm__ __volatile__("hlt");

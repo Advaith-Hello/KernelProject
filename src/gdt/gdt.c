@@ -1,4 +1,5 @@
 #include "gdt/gdt.h"
+#include "serial/serial.h"
 
 
 
@@ -36,17 +37,18 @@ void setup_gdt()
     gdt_ptr.base = (uint32_t)&gdt_entries[0];
 
     // Null
-    gdt_entries[0] = create_descriptor(0x00000000, 0x0, 0x0);
+    gdt_entries[0] = 0;
     
     // Ring 0
-    gdt_entries[1] = create_descriptor(0x00400000, 0x003FFFFF, GDT_CODE_PL0);
-    gdt_entries[2] = create_descriptor(0x00800000, 0x003FFFFF, GDT_DATA_PL0);
+    gdt_entries[1] = create_descriptor(0x0, 0x000FFFFF, GDT_CODE_PL0);
+    gdt_entries[2] = create_descriptor(0x0, 0x000FFFFF, GDT_DATA_PL0);
     
     // Ring 3
-    gdt_entries[3] = create_descriptor(0x00000000, 0xFFFFFFFF, GDT_CODE_PL3);
-    gdt_entries[4] = create_descriptor(0x00000000, 0xFFFFFFFF, GDT_DATA_PL3);
+    gdt_entries[3] = create_descriptor(0x0, 0x000FFFFF, GDT_CODE_PL3);
+    gdt_entries[4] = create_descriptor(0x0, 0x000FFFFF, GDT_DATA_PL3);
 
     // Flush in asm
     gdt_flush();
+    serial_puts("\nFinished gdt flush\n");
 }
 
