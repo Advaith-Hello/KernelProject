@@ -1,4 +1,11 @@
-#include "gdt/tools.h"
+#include "gdt/gdt.h"
+
+
+
+uint64_t gdt_entries[GDT_ENTRIES_AMT];
+struct gdt_pointer gdt_ptr;
+
+extern void gdt_flush();
 
 
 uint64_t create_descriptor(uint32_t base, uint32_t limit, uint16_t flag)
@@ -19,5 +26,27 @@ uint64_t create_descriptor(uint32_t base, uint32_t limit, uint16_t flag)
     descriptor |= limit  & 0x0000FFFF;               // set limit bits 15:0
  
     return descriptor;
+}
+
+
+void setup_gdt()
+{
+    // Limit and base for lgdt
+    gdt_ptr.limit = (sizeof(uint64_t) * GDT_ENTRIES_AMT) - 1;
+    gdt_ptr.base = (uint32_t)&gdt_entries[0];
+
+    // Null
+    gdt_entries[0] = create_descriptor(0x00000000, 0x0, 0x0);
+    
+    // Ring 0
+    gdt_entries[1] = create_descriptor(0x00400000, 0x003FFFFF, GDT_CODE_PL0);
+    gdt_entries[2] = create_descriptor(0x00800000, 0x003FFFFF, GDT_DATA_PL0);
+    
+    // Ring 3
+    gdt_entries[3] = create_descriptor(0x00000000, 0xFFFFFFFF, GDT_CODE_PL3);
+    gdt_entries[4] = create_descriptor(0x00000000, 0xFFFFFFFF, GDT_DATA_PL3);
+
+    // Flush in asm
+    gdt_flush();
 }
 

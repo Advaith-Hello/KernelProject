@@ -53,7 +53,7 @@ void PIC_remap(int offset1, int offset2)
 }
 
 
-void setup_idt_table(void)
+void setup_idt(void)
 {
   idtr.base = (uintptr_t)&idt[0];
   idtr.limit = (uint16_t)sizeof(idt_entry_t) * IDT_MAX_DESCRIPTORS - 1;

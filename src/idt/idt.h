@@ -65,5 +65,5 @@ static inline void io_wait(void) {
 }
 
 
-void setup_idt_table(void);
+void setup_idt(void);
 

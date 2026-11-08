@@ -44,6 +44,8 @@
                      SEG_LONG(0)     | SEG_SIZE(1) | SEG_GRAN(1) | \
                      SEG_PRIV(3)     | SEG_DATA_RDWR
 
+#define GDT_ENTRIES_AMT 5 
+
 
 struct gdt_pointer {
     uint16_t limit;
@@ -52,4 +54,6 @@ struct gdt_pointer {
 
 
 uint64_t create_descriptor(uint32_t base, uint32_t limit, uint16_t flag);
+
+void setup_gdt();
 

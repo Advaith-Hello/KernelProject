@@ -3,7 +3,9 @@
 #include <stdint.h>
 
 #include "idt/idt.h"
+#include "gdt/gdt.h"
 #include "vga/print.h"
+#include "serial/serial.h"
 #include "keyboard/stdin.h"
 #include "shell/init/shell.h"
 #include "paging/paging.h"
@@ -20,7 +22,9 @@
 
 void kernel_main(void)
 {
-	setup_idt_table();
+	serial_puts("Hello, World!");
+	setup_gdt();
+	setup_idt();
 	setup_paging();
 	begin_shell();
 

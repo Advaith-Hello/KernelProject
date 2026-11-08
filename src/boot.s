@@ -31,6 +31,9 @@
 // Jumps to C kernel
 
 _start:
+  movw $0x3F8, %dx
+  movb $'X', %al
+  outb %al, %dx
   mov $stack_top, %esp // Sets stack
   call kernel_main // Calls the kernel
 
