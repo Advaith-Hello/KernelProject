@@ -64,7 +64,7 @@ const char keycodes_to_ascii_normal[] =
   '\0',
   '\0',
   '\n',
-  '\0',
+  '\b',
   '\0',
   '\0',
   '\0',

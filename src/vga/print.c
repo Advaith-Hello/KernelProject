@@ -27,25 +27,9 @@ void init_vga_terminal(void)
 }
 
 
-// Put char on screen
+// Cursor commands
 
-void terminal_put(char chr)
-{
-	const size_t idx = terminal_row * VGA_WIDTH + terminal_column;
-
-  if (chr >= 32 && chr <= 126 && chr != '\n' && chr != '\r') {
-	  terminal_buffer[idx] = vga_entry(chr, terminal_color);
-	}
-
-	if (chr == '\n') {
-		terminal_row++;
-		terminal_column = 0;
-	} else if (chr == '\r') {
-		terminal_column = 0;
-	} else {
-		terminal_column++;
-	}
-
+static void move_cursor() {
 	if (terminal_column >= VGA_WIDTH) {
 		terminal_column = 0;
 		terminal_row++;
@@ -58,6 +42,33 @@ void terminal_put(char chr)
 }
 
 
+// Put char on screen
+
+void terminal_put(char chr)
+{
+	const size_t idx = terminal_row * VGA_WIDTH + terminal_column;
+
+  if (chr >= 32 && chr <= 126 && chr != '\n' && chr != '\r') {
+	  terminal_buffer[idx] = vga_entry(chr, terminal_color);
+	}
+
+	if (chr == '\b') {
+		terminal_row--;
+	}
+
+	if (chr == '\n') {
+		terminal_row++;
+		terminal_column = 0;
+	} else if (chr == '\r') {
+		terminal_column = 0;
+	} else {
+		terminal_column++;
+	}
+
+	move_cursor();
+}
+
+
 // Write null-term string on screen
 
 void vga_puts(const char* str) {
@@ -66,7 +77,6 @@ void vga_puts(const char* str) {
 		terminal_put(str[i]);
 	}
 }
-
 
 // Prints an int as a hex string
 

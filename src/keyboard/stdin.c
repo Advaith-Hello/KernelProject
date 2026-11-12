@@ -38,6 +38,7 @@ int input_stdin(char* buffer, size_t buffer_len)
     if (ascii_keyboard_stream.latest_idx > stream_idx) {
       char chr = get_from_key_stream(stream_idx);
       if (chr == '\n') break;
+      if (chr == '\b') break;
       terminal_put(chr);
       buffer[buffer_idx] = chr;
       buffer_idx++;
